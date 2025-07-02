@@ -532,27 +532,242 @@
 
 
 
-    <footer id="footer">
-        <div class="footer-container">
-            <ul class="footer-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
 
-            <section id="about" class="about-section">
-                <h2>About</h2>
-                <p>A Website that can convert from Gigabytes to Megabytes easily in just oe click.</p>
-            </section>
-            
-            <section id="contact" class="contact-section">
-                <h2>Contact</h2>
-                <p><i class='bx bxl-gmail'></i> younes123ouba@gmail.com</p>
-                <p><i class='bx bxl-telegram'></i> @YounesOuba</p>
-            </section>
-            <br>
-            <p>&copy; 2024 GB To MB Converter. All rights reserved.</p>
+    <footer id="footer" class="modern-footer">
+      <div class="footer-flex">
+        <!-- Branding & About -->
+        <div class="footer-col brand-col">
+          <h2>GB to MB Converter</h2>
+          <p>Easily convert Gigabytes to Megabytes with just one click. Simple, fast, and reliable tool for your daily needs.</p>
         </div>
+        <!-- Quick Links -->
+        <div class="footer-col links-col ml-12">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#" onclick="openPopup('about')">About</a></li>
+            <li><a href="#" onclick="openPopup('contact')">Contact</a></li>
+            <li><a href="https://github.com/YounesOuba" target="_blank"><i class='bx bxl-github'></i> GitHub</a></li>
+          </ul>
+        </div>
+        <!-- Contact Info -->
+        <div class="footer-col contact-col">
+          <h3>Contact</h3>
+          <p><i class='bx bxl-gmail'></i> <a href="mailto:oubayounesouba@gmail.com">oubayounesouba@gmail.com</a></p>
+          <p><i class='bx bxl-telegram'></i> <a href="https://t.me/YounesOuba" target="_blank">@YounesOuba</a></p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2024 GB to MB Converter. All rights reserved.
+      </div>
+      <!-- Popups -->
+      <div id="about-popup" class="footer-popup" style="display:none;">
+        <div class="footer-popup-content">
+          <span class="footer-popup-close" onclick="closePopup('about')">&times;</span>
+          <h2>About</h2>
+          <p>This website allows you to convert between Gigabytes and Megabytes instantly, with a modern, animated, and user-friendly interface. No data is collected or stored. Enjoy the experience!</p>
+        </div>
+      </div>
+      <div id="contact-popup" class="footer-popup" style="display:none;">
+        <div class="footer-popup-content">
+          <span class="footer-popup-close" onclick="closePopup('contact')">&times;</span>
+          <h2>Contact</h2>
+          <p>For any questions, suggestions, or feedback, feel free to reach out:</p>
+          <p><i class='bx bxl-gmail'></i> <a href="mailto:oubayounesouba@gmail.com" style="color: #3a3d98; text-decoration: underline;">oubayounesouba@gmail.com</a></p>
+          <p><i class='bx bxl-telegram'></i> <a href="https://t.me/YounesOuba" target="_blank" style="color: #3a3d98; text-decoration: underline;">@YounesOuba</a></p>
+        </div>
+      </div>
+      <style>
+        .modern-footer {
+          background: #181a23;
+          color: #fff;
+          padding: 2.5rem 1rem 1.2rem 1rem;
+          border-radius: 24px 24px 0 0;
+          box-shadow: 0 -4px 32px #3a3d9833;
+          margin-top: 60px;
+          position: relative;
+          overflow: hidden;
+        }
+        .footer-flex {
+          max-width: 1200px;
+          margin: auto;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          align-items: stretch;
+          gap: 2.5rem;
+        }
+        @media (max-width: 600px) {
+          .footer-flex {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.2rem;
+            padding: 0 0.2rem;
+          }
+          .footer-col {
+            min-width: 0;
+            margin-bottom: 0.5rem;
+            padding: 0 0.2rem;
+          }
+          .brand-col h2 {
+            font-size: 1.1rem;
+          }
+          .brand-col p {
+            font-size: 0.95rem;
+          }
+          .links-col h3, .contact-col h3 {
+            font-size: 1rem;
+          }
+          .links-col ul {
+            margin-left: 0.5rem;
+          }
+          .footer-bottom {
+            font-size: 0.85rem;
+            padding-top: 0.7rem;
+          }
+        }
+        .footer-col {
+          flex: 1 1 260px;
+          min-width: 200px;
+          margin-bottom: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.7rem;
+        }
+        .brand-col h2 {
+          font-size: 1.5rem;
+          margin-bottom: 0.5rem;
+          letter-spacing: 1px;
+        }
+        .brand-col p {
+          max-width: 320px;
+          color: #e0e0e0;
+        }
+        .links-col h3, .contact-col h3 {
+          margin-bottom: 0.5rem;
+        }
+        .links-col ul {
+          align-items: center;  
+          list-style: none;
+          padding: 0;
+          margin: 0 0 0 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .links-col a {
+          color: #f9c784;
+          text-decoration: none;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          transition: color 0.2s;
+        }
+        .links-col a:hover {
+          color: #fff;
+        }
+        .contact-col a {
+          color: #f9c784;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .contact-col a:hover {
+          color: #fff;
+        }
+        .footer-bottom {
+          text-align: center;
+          margin-top: 2rem;
+          border-top: 1px solid #333;
+          padding-top: 1rem;
+          font-size: 0.95rem;
+          letter-spacing: 1px;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+          .footer-flex {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+          }
+          .footer-col {
+            min-width: 0;
+            margin-bottom: 0.5rem;
+          }
+        }
+
+        /* Make the middle (links) column take full width on mobile */
+        @media (max-width: 600px) {
+          .footer-col.links-col {
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: 1 1 100%;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+          }
+          .footer-col.links-col ul {
+            width: 100%;
+            align-items: center;
+            margin-left: 0;
+          }
+        }
+        /* Popups (unchanged) */
+        .footer-popup {
+          position: fixed;
+          top: 0; left: 0; width: 100vw; height: 100vh;
+          background: rgba(30,32,44,0.75);
+          display: flex; align-items: center; justify-content: center;
+          z-index: 99999;
+          animation: fadeInPopup 0.3s;
+        }
+        .footer-popup-content {
+          background: #fff;
+          color: #222;
+          border-radius: 18px;
+          padding: 2.2rem 2.5rem 1.5rem 2.5rem;
+          min-width: 320px; max-width: 90vw;
+          box-shadow: 0 8px 32px #3a3d9833;
+          position: relative;
+          animation: popupBounce 0.5s cubic-bezier(.68,-0.55,.27,1.55);
+        }
+        .footer-popup-content h2 { color: #3a3d98; margin-top:0; }
+        .footer-popup-close {
+          position: absolute; top: 12px; right: 18px;
+          font-size: 2rem; color: #3a3d98; cursor: pointer;
+          font-weight: bold; transition: color 0.2s;
+        }
+        .footer-popup-close:hover { color: #d32f2f; }
+        @keyframes fadeInPopup { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popupBounce {
+          0% { transform: scale(0.8); opacity:0; }
+          60% { transform: scale(1.08); opacity:1; }
+          100% { transform: scale(1); opacity:1; }
+        }
+        @media (max-width: 600px) {
+          .footer-popup-content { padding: 1.2rem 0.7rem; min-width: 0; }
+        }
+      </style>
     </footer>
+    <script>
+      function openPopup(type) {
+        document.getElementById(type+'-popup').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+      function closePopup(type) {
+        document.getElementById(type+'-popup').style.display = 'none';
+        document.body.style.overflow = '';
+      }
+      // Close popup on ESC
+      document.addEventListener('keydown', function(e) {
+        if((document.getElementById('about-popup').style.display==='flex'||document.getElementById('contact-popup').style.display==='flex') && e.key==='Escape'){
+          closePopup('about'); closePopup('contact');
+        }
+      });
+    </script>
+
     
 
     <script>
