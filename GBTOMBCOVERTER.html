@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GB To MB Coverter</title>
+</head>
+
+<!-- Boxicons for icons -->
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<!-- Google Fonts for modern look -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #3a3d98 0%, #f9c784 100%);
+        color: #222;
+        font-family: 'Montserrat', Arial, sans-serif;
+        margin: 0;
+        padding: 40px;
+        min-height: 100vh;
+        overflow-x: hidden;
+        animation: bgMove 10s linear infinite alternate;
+    }
+
+    @keyframes bgMove {
+        0% { background-position: 0% 50%; }
+        100% { background-position: 100% 50%; }
+    }
+
+    /* Navbar styles */
+    .navbar {
+        background: rgba(58, 61, 152, 0.95);
+        color: #fff;
+        padding: 12px 28px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        position: relative;
+        z-index: 10;
+        animation: navbarFadeIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes navbarFadeIn {
+        0% { opacity: 0; transform: translateY(-40px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .navbar-brand a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 2em;
+        font-weight: bold;
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        letter-spacing: 2px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-shadow: 0 2px 8px #0002;
+        transition: color 0.3s;
+    }
+    .navbar-brand a:hover {
+        color: #f9c784;
+    }
+
+    .navbar-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-weight: 600;
+        gap: 28px;
+        font-size: 1.1em;
+    }
+
+    .navbar-links li {
+        margin-left: 0;
+    }
+
+    .navbar-links a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s, text-shadow 0.3s;
+        padding: 6px 14px;
+        border-radius: 8px;
+        position: relative;
+    }
+    .navbar-links a:hover {
+        color: #3a3d98;
+        background: #f9c784;
+        text-shadow: 0 2px 8px #f9c78488;
+    }
+
+    /* Hamburger menu styles for small screens */
+    .navbar-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+    }
+    .navbar-toggle span {
+        height: 3px;
+        width: 28px;
+        background-color: #fff;
+        margin-bottom: 5px;
+        border-radius: 2px;
+        transition: all 0.3s;
+    }
+
+    @media (max-width: 900px) {
+        .navbar-links {
+            gap: 10px;
+            font-size: 1em;
+        }
+    }
+    @media (max-width: 768px) {
+        .navbar-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background: rgba(58, 61, 152, 0.98);
+            position: absolute;
+            top: 60px;
+            left: 0;
+            padding: 10px 0;
+            border-radius: 0 0 16px 16px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+        }
+        .navbar-links li {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .navbar-toggle {
+            display: flex;
+        }
+    }
+    .show-navbar {
+        display: flex !important;
+    }
+
+    /* Title section */
+    .title {
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+        padding: 48px 32px 32px 32px;
+        background: rgba(255,255,255,0.95);
+        margin-bottom: 80px;
+        border-radius: 18px;
+        max-width: 1000px;
+        text-align: center;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+        animation: popIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popIn {
+        0% { opacity: 0; transform: scale(0.8); }
+        100% { opacity: 1; transform: scale(1); }
+    }
+    .title::before {
+        content: '';
+        position: absolute;
+        top: -60px; left: -60px;
+        width: 180px; height: 180px;
+        background: radial-gradient(circle, #f9c784 0%, #3a3d98 100%);
+        opacity: 0.15;
+        border-radius: 50%;
+        z-index: 0;
+        animation: floatBlob 6s ease-in-out infinite alternate;
+    }
+    @keyframes floatBlob {
+        0% { transform: translateY(0) scale(1); }
+        100% { transform: translateY(30px) scale(1.1); }
+    }
+    .title h2 {
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        font-size: 2.3em;
+        color: #3a3d98;
+        margin-bottom: 12px;
+        letter-spacing: 2px;
+        z-index: 1;
+        position: relative;
+        text-shadow: 0 2px 8px #f9c78444;
+        animation: textGlow 2s infinite alternate;
+    }
+    @keyframes textGlow {
+        0% { text-shadow: 0 2px 8px #f9c78444; }
+        100% { text-shadow: 0 2px 24px #f9c784cc; }
+    }
+    .title p {
+        margin: 0 auto;
+        max-width: 700px;
+        font-size: 1.1em;
+        color: #444;
+        z-index: 1;
+        position: relative;
+    }
+
+    /* Main section */
+    .firstSEction {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: rgba(255,255,255,0.97);
+        border-radius: 18px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+        padding: 48px 32px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 60px;
+        gap: 24px;
+        position: relative;
+        overflow: hidden;
+    }
+    .firstSEction::after {
+        content: '';
+        position: absolute;
+        bottom: -60px; right: -60px;
+        width: 180px; height: 180px;
+        background: radial-gradient(circle, #3a3d98 0%, #f9c784 100%);
+        opacity: 0.12;
+        border-radius: 50%;
+        z-index: 0;
+        animation: floatBlob 7s 1s ease-in-out infinite alternate;
+    }
+
+    h2, h3 {
+        color: #3a3d98;
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.3em; }
+
+    p {
+        font-size: 1em;
+        color: #666;
+        text-align: center;
+        width: 100%;
+    }
+
+    .GBcontainer, .MBcontainer {
+        width: 48%;
+        text-align: center;
+        background: rgba(255,255,255,0.18);
+        border-radius: 24px;
+        box-shadow: 0 8px 32px 0 #3a3d9833, 0 0 0 4px #f9c78433;
+        padding: 48px 18px 38px 18px;
+        margin-bottom: 0;
+        position: relative;
+        z-index: 1;
+        animation: floatIn 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        backdrop-filter: blur(12px);
+        border: 2.5px solid #3a3d98cc;
+        overflow: visible;
+    }
+    .GBcontainer::before, .MBcontainer::before {
+        content: '';
+        position: absolute;
+        top: -18px; left: 50%;
+        transform: translateX(-50%);
+        width: 70px; height: 70px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f9c784 0%, #3a3d98 100%);
+        filter: blur(8px);
+        opacity: 0.18;
+        z-index: 0;
+        animation: floatBlob 4s infinite alternate;
+    }
+    .GBcontainer .floating-icon, .MBcontainer .floating-icon {
+        font-size: 2.7em;
+        color: #3a3d98;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 2px 16px #3a3d9833;
+        padding: 12px;
+        position: absolute;
+        top: -38px; left: 50%;
+        transform: translateX(-50%) rotate(-8deg);
+        z-index: 2;
+        animation: floatIcon 2.5s infinite alternate cubic-bezier(.68,-0.55,.27,1.55);
+        transition: filter 0.3s;
+    }
+    .GBcontainer:hover .floating-icon, .MBcontainer:hover .floating-icon {
+        filter: drop-shadow(0 0 16px #f9c784cc);
+    }
+    @keyframes floatIcon {
+        0% { transform: translateX(-50%) translateY(0) rotate(-8deg); }
+        100% { transform: translateX(-50%) translateY(-12px) rotate(8deg); }
+    }
+    .GBcontainer:hover, .MBcontainer:hover {
+        transform: scale(1.06) rotate(-2deg);
+        box-shadow: 0 12px 48px 0 #3a3d98cc, 0 0 0 6px #f9c78477;
+        background: rgba(255,255,255,0.28);
+    }
+    @keyframes floatIn {
+        0% { opacity: 0; transform: translateY(60px) scale(0.9); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    input[type="number"], input[type="text"] {
+        width: calc(100% - 50px);
+        padding: 14px;
+        border: 2px solid #e4e4e7;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-right: 10px;
+        font-size: 1.1em;
+        box-shadow: 0 2px 8px #3a3d9833;
+        color: #333;
+        background: #fff9;
+        outline: none;
+        transition: border 0.3s, box-shadow 0.3s;
+        font-family: 'Montserrat', Arial, sans-serif;
+    }
+    input[type="number"]:focus, input[type="text"]:focus {
+        border: 2px solid #3a3d98;
+        box-shadow: 0 2px 16px #3a3d9888;
+    }
+
+    button {
+        background: linear-gradient(90deg, #3a3d98 0%, #f9c784 100%);
+        color: #fff;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 1.1em;
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        font-weight: 700;
+        transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+        display: inline-block;
+        margin-top: 10px;
+        margin-right: 8px;
+        box-shadow: 0 2px 8px #3a3d9833;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+    }
+    button:active {
+        transform: scale(0.97);
+    }
+    button:hover {
+        background: linear-gradient(90deg, #f9c784 0%, #3a3d98 100%);
+        color: #3a3d98;
+        box-shadow: 0 4px 16px #f9c78488;
+    }
+
+    .animated-btn {
+        animation: pulseBtn 1.5s infinite alternate;
+    }
+    @keyframes pulseBtn {
+        0% { box-shadow: 0 0 0 0 #f9c78444; }
+        100% { box-shadow: 0 0 16px 8px #f9c78444; }
+    }
+
+    span, .GBcontainer span, .MBcontainer span {
+        font-size: 1.1em;
+        margin-left: 5px;
+        vertical-align: middle;
+        color: #3a3d98;
+        font-family: 'Orbitron', 'Montserrat', Arial, sans-serif;
+        font-weight: 600;
+        position: static;
+        margin-top: 0;
+    }
+
+    .result-anim {
+        animation: popResult 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popResult {
+        0% { transform: scale(0.7); background: #f9c78444; }
+        60% { transform: scale(1.15); background: #f9c784cc; }
+        100% { transform: scale(1); background: #fff; }
+    }
+
+    @media (max-width: 900px) {
+        .firstSEction {
+            flex-direction: column;
+            align-items: center;
+        }
+        .GBcontainer, .MBcontainer {
+            width: 100%;
+            margin-bottom: 24px;
+        }
+    }
+    @media (max-width: 480px) {
+        .title h2 { font-size: 1.3em; }
+        .title p { font-size: 0.95em; }
+        h3 { font-size: 1.1em; }
+        input[type="number"], input[type="text"] { font-size: 0.95em; }
+        span { font-size: 0.95em; }
+        button { font-size: 0.95em; }
+        .firstSEction { padding: 18px 4px; }
+        .GBcontainer, .MBcontainer { padding: 18px 6px; }
+    }
+
+    .highlight {
+        background: linear-gradient(90deg, #f9c784 0%, #fff 100%);
+        padding: 10px;
+        border-radius: 20px;
+        transition: background 1s ease;
+        box-shadow: 0 2px 16px #f9c78488;
+    }
+
+    /* Footer */
+    footer {
+        background: rgba(58, 61, 152, 0.97);
+        color: #fff;
+        padding: 28px 0 12px 0;
+        text-align: center;
+        margin-top: 60px;
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.17);
+        width: 100%;
+        font-family: 'Montserrat', Arial, sans-serif;
+        position: relative;
+        overflow: hidden;
+    }
+    .footer-container {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+    }
+    .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 10px;
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+    }
+    .footer-links li { margin: 0; }
+    .footer-links a {
+        color: #f9c784;
+        text-decoration: none;
+        transition: color 0.3s;
+        font-weight: 700;
+    }
+    .footer-links a:hover { color: #fff; }
+    footer p {
+        margin: 0;
+        font-size: 0.95em;
+        color: #cccccc;
+    }
+    /* Animated footer blob */
+    footer::after {
+        content: '';
+        position: absolute;
+        top: -60px; left: -60px;
+        width: 180px; height: 180px;
+        background: radial-gradient(circle, #f9c784 0%, #3a3d98 100%);
+        opacity: 0.13;
+        border-radius: 50%;
+        z-index: 0;
+        animation: floatBlob 8s 2s ease-in-out infinite alternate;
+    }
+</style>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="GBTOMBCOVERTER.html"><img src="" alt="">Converter App</a>
+            </div>
+            <div class="navbar-toggle" id="navbar-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="navbar-links" id="navbar-links">
+                <li><a href="GBTOMBCOVERTER.html">Home</a></li>
+                <li><a href="#gb-to-mb" onclick="highlightSection('gb-to-mb')">GB to MB</a></li>
+                <li><a href="#mb-to-gb" onclick="highlightSection('mb-to-gb')">MB to GB</a></li>
+                <li><a href="#footer">About</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <!-- \section{GB To MB Coverter} -->
+        <div class="title">
+            <h2>GB To MB Converter</h2>
+            <p>Convert gigabytes to megabytes. Please enter the gigabytes (GB) value to convert to megabytes (MB).</p>
+        </div>
+    <section class="firstSEction" style="flex-direction: row; align-items: stretch; gap: 32px;">
+        <div id="gb-to-mb" class="GBcontainer" style="margin-bottom:0; flex: 1 1 0; min-width: 320px;">
+            <div class="floating-icon"><i class='bx bx-chevrons-down bx-tada'></i></div>
+            <h3>Gigabytes to Megabytes Converter</h3>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <input type="number" id="input1" placeholder="Enter GB value" class="input" required min="0" step="any" style="margin-bottom:0;">
+                <span id="gbLabel" style="margin-left:0;">GB</span>
+            </div>
+            <br>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <input type="text" placeholder="MB Value" class="input" readonly id="input2" style="margin-bottom:0;">
+                <span id="mbLabel" style="margin-left:0;">MB</span>
+                <button id="copy-mb" title="Copy MB value" style="padding:10px 12px;border-radius:8px;background:#f9c784;color:#3a3d98;font-size:1.2em;box-shadow:0 2px 8px #f9c78444;transition:background 0.2s;cursor:pointer;border:none;"><i class='bx bx-copy'></i></button>
+            </div>
+            <button id="button1" class="animated-btn" onclick="convertGB()"><i class='bx bx-transfer'></i> Convert</button>
+            <button id="clear1" onclick="clear1()"><i class='bx bx-eraser'></i> Clear</button>
+            <div id="gb-tip" style="margin-top:18px;font-size:0.98em;color:#3a3d98b0;"></div>
+            <div id="gb-fact" style="margin-top:18px;font-size:0.95em;color:#3a3d98b0;opacity:0;transition:opacity 0.7s;"></div>
+        </div>
+        <div id="mb-to-gb" class="MBcontainer" style="margin-bottom:0; flex: 1 1 0; min-width: 320px;">
+            <div class="floating-icon"><i class='bx bx-chevrons-up bx-tada'></i></div>
+            <h3>Megabytes to Gigabytes Converter</h3>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <input type="number" id="input3" placeholder="Enter MB value" class="input" required min="0" step="any" style="margin-bottom:0;">
+                <span class="mbLabel" style="margin-left:0;">MB</span>
+            </div>
+            <br>
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+                <input type="text" placeholder="GB Value" class="input" readonly id="input4" style="margin-bottom:0;">
+                <span id="gbLabel" style="margin-left:0;">GB</span>
+                <button id="copy-gb" title="Copy GB value" style="padding:10px 12px;border-radius:8px;background:#f9c784;color:#3a3d98;font-size:1.2em;box-shadow:0 2px 8px #f9c78444;transition:background 0.2s;cursor:pointer;border:none;"><i class='bx bx-copy'></i></button>
+            </div>
+            <button id="button2" class="animated-btn" onclick="convertMB()"><i class='bx bx-transfer'></i> Convert</button>
+            <button id="clear2" onclick="clear2()"><i class='bx bx-eraser'></i> Clear</button>
+            <div id="mb-tip" style="margin-top:18px;font-size:0.98em;color:#3a3d98b0;"></div>
+            <div id="mb-fact" style="margin-top:18px;font-size:0.95em;color:#3a3d98b0;opacity:0;transition:opacity 0.7s;"></div>
+        </div>
+    </section>
+
+
+
+    <footer id="footer">
+        <div class="footer-container">
+            <ul class="footer-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+            <section id="about" class="about-section">
+                <h2>About</h2>
+                <p>A Website that can convert from Gigabytes to Megabytes easily in just oe click.</p>
+            </section>
+            
+            <section id="contact" class="contact-section">
+                <h2>Contact</h2>
+                <p><i class='bx bxl-gmail'></i> younes123ouba@gmail.com</p>
+                <p><i class='bx bxl-telegram'></i> @YounesOuba</p>
+            </section>
+            <br>
+            <p>&copy; 2024 GB To MB Converter. All rights reserved.</p>
+        </div>
+    </footer>
+    
+
+    <script>
+        // Animated background particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.createElement('canvas');
+            canvas.style.position = 'fixed';
+            canvas.style.top = 0;
+            canvas.style.left = 0;
+            canvas.style.width = '100vw';
+            canvas.style.height = '100vh';
+            canvas.style.zIndex = 0;
+            canvas.style.pointerEvents = 'none';
+            canvas.id = 'bg-particles';
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            let w = window.innerWidth, h = window.innerHeight;
+            canvas.width = w; canvas.height = h;
+            window.addEventListener('resize', () => {
+                w = window.innerWidth; h = window.innerHeight;
+                canvas.width = w; canvas.height = h;
+            });
+            const particles = Array.from({length: 32}, () => ({
+                x: Math.random()*w, y: Math.random()*h,
+                r: Math.random()*2+1, dx: (Math.random()-0.5)*0.7, dy: (Math.random()-0.5)*0.7,
+                c: Math.random() > 0.5 ? '#3a3d98' : '#f9c784'
+            }));
+            function drawParticles() {
+                ctx.clearRect(0,0,w,h);
+                for(const p of particles) {
+                    ctx.beginPath();
+                    ctx.arc(p.x,p.y,p.r,0,2*Math.PI);
+                    ctx.fillStyle = p.c;
+                    ctx.globalAlpha = 0.18;
+                    ctx.shadowColor = p.c;
+                    ctx.shadowBlur = 12;
+                    ctx.fill();
+                    ctx.globalAlpha = 1;
+                    ctx.shadowBlur = 0;
+                    p.x += p.dx; p.y += p.dy;
+                    if(p.x<0||p.x>w) p.dx*=-1;
+                    if(p.y<0||p.y>h) p.dy*=-1;
+                }
+                requestAnimationFrame(drawParticles);
+            }
+            drawParticles();
+        });
+
+
+        // Fun facts for each converter
+        const gbFacts = [
+            "Did you know? 1 GB can store about 250 songs in MP3 format!",
+            "A 4K movie can easily be 20-50 GB in size.",
+            "1 GB = 1,073,741,824 bytes!",
+            "A single-layer DVD holds about 4.7 GB.",
+            "The first 1GB hard drive (1980) weighed 550 pounds!"
+        ];
+        const mbFacts = [
+            "A 1.44 MB floppy disk could barely hold a single photo today!",
+            "1 MB = 1,048,576 bytes.",
+            "A 3-minute MP3 song is about 3-5 MB.",
+            "A 10 MB file could be an entire eBook library!",
+            "The first web page was less than 1 MB."
+        ];
+
+        // Conversion logic with animation, tips, and fun facts
+        function convertGB(){
+            const input1 = document.getElementById('input1').value;
+            const input2 = document.getElementById('input2');
+            const tip = document.getElementById('gb-tip');
+            const fact = document.getElementById('gb-fact');
+            let mbValue = '';
+            if(input1 === '' || isNaN(input1) || Number(input1) < 0) {
+                input2.value = '';
+                tip.innerHTML = "<span style='color:#d32f2f'><i class='bx bx-error'></i> Please enter a valid non-negative GB value.</span>";
+                input2.classList.remove('result-anim');
+                fact.style.opacity = 0;
+                return;
+            }
+            mbValue = (Number(input1) * 1024).toLocaleString();
+            input2.value = mbValue;
+            input2.classList.remove('result-anim');
+            void input2.offsetWidth; // trigger reflow
+            input2.classList.add('result-anim');
+            tip.innerHTML = `<i class='bx bx-bulb'></i> <b>${input1} GB</b> = <b>${mbValue} MB</b> <br>1 GB = 1024 MB`;
+            // Show fun fact
+            fact.innerHTML = `<i class='bx bx-rocket'></i> ${gbFacts[Math.floor(Math.random()*gbFacts.length)]}`;
+            setTimeout(()=>{fact.style.opacity=1;}, 100);
+        }
+
+        function convertMB(){
+            const input3 = document.getElementById('input3').value;
+            const input4 = document.getElementById('input4');
+            const tip = document.getElementById('mb-tip');
+            const fact = document.getElementById('mb-fact');
+            let gbValue = '';
+            if(input3 === '' || isNaN(input3) || Number(input3) < 0) {
+                input4.value = '';
+                tip.innerHTML = "<span style='color:#d32f2f'><i class='bx bx-error'></i> Please enter a valid non-negative MB value.</span>";
+                input4.classList.remove('result-anim');
+                fact.style.opacity = 0;
+                return;
+            }
+            gbValue = (Number(input3) / 1024).toLocaleString(undefined, {maximumFractionDigits: 6});
+            input4.value = gbValue;
+            input4.classList.remove('result-anim');
+            void input4.offsetWidth;
+            input4.classList.add('result-anim');
+            tip.innerHTML = `<i class='bx bx-bulb'></i> <b>${input3} MB</b> = <b>${gbValue} GB</b> <br>1 MB = 0.0009765625 GB`;
+            // Show fun fact
+            fact.innerHTML = `<i class='bx bx-rocket'></i> ${mbFacts[Math.floor(Math.random()*mbFacts.length)]}`;
+            setTimeout(()=>{fact.style.opacity=1;}, 100);
+        }
+
+
+        function clear1(){
+            document.getElementById('input1').value = '';
+            document.getElementById('input2').value = '';
+            document.getElementById('gb-tip').innerHTML = '';
+            document.getElementById('gb-fact').style.opacity = 0;
+        }
+
+        function clear2(){
+            document.getElementById('input3').value = '';
+            document.getElementById('input4').value = '';
+            document.getElementById('mb-tip').innerHTML = '';
+            document.getElementById('mb-fact').style.opacity = 0;
+        }
+        // Copy result buttons
+        document.getElementById('copy-mb').addEventListener('click', function() {
+            const val = document.getElementById('input2').value;
+            if(val) {
+                navigator.clipboard.writeText(val);
+                this.innerHTML = "<i class='bx bx-check'></i>";
+                this.style.background = '#3a3d98';
+                this.style.color = '#fff';
+                setTimeout(()=>{
+                    this.innerHTML = "<i class='bx bx-copy'></i>";
+                    this.style.background = '#f9c784';
+                    this.style.color = '#3a3d98';
+                }, 900);
+            }
+        });
+        document.getElementById('copy-gb').addEventListener('click', function() {
+            const val = document.getElementById('input4').value;
+            if(val) {
+                navigator.clipboard.writeText(val);
+                this.innerHTML = "<i class='bx bx-check'></i>";
+                this.style.background = '#3a3d98';
+                this.style.color = '#fff';
+                setTimeout(()=>{
+                    this.innerHTML = "<i class='bx bx-copy'></i>";
+                    this.style.background = '#f9c784';
+                    this.style.color = '#3a3d98';
+                }, 900);
+            }
+        });
+
+        // Keyboard shortcuts and Enter key
+        document.addEventListener('keydown', function(e) {
+            if(document.activeElement.id === 'input1' && e.key === 'Enter') convertGB();
+            if(document.activeElement.id === 'input3' && e.key === 'Enter') convertMB();
+            if(e.ctrlKey && e.key === 'c') {
+                if(document.activeElement.id === 'input1') clear1();
+                if(document.activeElement.id === 'input3') clear2();
+            }
+        });
+
+        // Navbar hamburger
+        const toggleButton = document.getElementById('navbar-toggle');
+        const navbarLinks = document.getElementById('navbar-links');
+        toggleButton.addEventListener('click', () => {
+            navbarLinks.classList.toggle('show-navbar');
+        });
+
+        // Highlight section effect
+        function highlightSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.add('highlight');
+            setTimeout(() => {
+                section.classList.remove('highlight');
+            }, 1000);
+        }
+
+        // Fun: Easter egg confetti on footer click
+        document.getElementById('footer').addEventListener('click', function() {
+            for(let i=0;i<32;i++) {
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.left = (Math.random()*100)+'vw';
+                conf.style.top = (Math.random()*100)+'vh';
+                conf.style.width = conf.style.height = (Math.random()*8+6)+'px';
+                conf.style.background = Math.random()>0.5?'#3a3d98':'#f9c784';
+                conf.style.borderRadius = '50%';
+                conf.style.zIndex = 9999;
+                conf.style.opacity = 0.8;
+                conf.style.transition = 'all 1.2s cubic-bezier(.68,-0.55,.27,1.55)';
+                document.body.appendChild(conf);
+                setTimeout(()=>{
+                    conf.style.top = (Math.random()*100)+'vh';
+                    conf.style.left = (Math.random()*100)+'vw';
+                    conf.style.opacity = 0;
+                }, 80);
+                setTimeout(()=>conf.remove(), 1400);
+            }
+        });
+    </script>
+</body>
+</html>
